@@ -4402,8 +4402,8 @@
         #IMAGE115 {
             width: 154px;
             height: 111px;
-            top: 1707.65px;
-            left: 358px;
+            top: 1407.65px;
+            left: 369px;
         }
 
         #IMAGE115>.ladi-image>.ladi-image-background {
@@ -6775,7 +6775,9 @@
     <script src='https://cdn.jsdelivr.net/gh/timoschaefer/jQuery-Sakura/jquery-sakura.min.js'></script>
     <script>
         $(window).on('load', function () {
-            $('body').sakura();
+            $('body').sakura({
+                newOn: 350 // Tăng mật độ hoa (mặc định là 300ms tạo 1 cánh)
+            });
         });
     </script>
 </body>
