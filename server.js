@@ -54,6 +54,7 @@ io.on('connection', (socket) => {
         try {
             const comment = new Comment({
                 name: commentData.name,
+                realName: commentData.realName,
                 message: commentData.message,
                 avatar: commentData.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(commentData.name)}&background=random`,
                 likes: [],
@@ -139,6 +140,7 @@ app.post('/api/comments', async (req, res) => {
     try {
         const comment = new Comment({
             name: req.body.name,
+            realName: req.body.realName,
             message: req.body.message,
             avatar: req.body.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(req.body.name)}&background=random`
         });

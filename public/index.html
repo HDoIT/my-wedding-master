@@ -6486,6 +6486,7 @@
 
             weddingSocket.emit('new-comment', {
                 name: weddingCurrentUsername,
+                realName: (window.weddingRealName || null),
                 message: message
             });
 
@@ -7105,6 +7106,7 @@
                     const response = await fetch(`/api/guests/${guestSlug}`);
                     if (response.ok) {
                         const guest = await response.json();
+                        window.weddingRealName = guest.name; // Store for comment submission
                         // Target the element at line ~4892
                         const inviteEl = document.querySelector('#PARAGRAPH14 .ladi-paragraph');
                         if (inviteEl) {

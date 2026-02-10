@@ -6,6 +6,11 @@ const commentSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    realName: {
+        type: String,
+        trim: true,
+        default: null
+    },
     message: {
         type: String,
         required: true,
