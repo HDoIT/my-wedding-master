@@ -4207,7 +4207,7 @@
         }
 
         #SECTION5 {
-            height: 1518.65px;
+            height: 1818.65px;
         }
 
         #IMAGE105,
@@ -4360,21 +4360,21 @@
 
         #IMAGE114 {
             width: 404.878px;
-            height: 392.327px;
+            height: 711.327px;
             top: 994.987px;
             left: 7.578px;
         }
 
         #IMAGE114>.ladi-image>.ladi-image-background {
-            width: 581.264px;
-            height: 387.509px;
+            width: 455.264px;
+            height: 711.327px;
             top: 1.661px;
             left: -29.454px;
             background-image: url("/images/A7401722.jpg");
         }
 
         #PARAGRAPH34 {
-            top: 1393.15px;
+            top: 1714.15px;
             left: 0.017px;
         }
 
@@ -4387,7 +4387,7 @@
         }
 
         #HEADLINE24 {
-            top: 1436.65px;
+            top: 1750.65px;
             left: 0px;
         }
 
@@ -4402,8 +4402,8 @@
         #IMAGE115 {
             width: 154px;
             height: 111px;
-            top: 1407.65px;
-            left: 369px;
+            top: 1707.65px;
+            left: 358px;
         }
 
         #IMAGE115>.ladi-image>.ladi-image-background {
@@ -4418,7 +4418,7 @@
         }
 
         #IMAGE117 {
-            top: 1334.65px;
+            top: 1704.65px;
             left: -98px;
         }
 
@@ -4517,6 +4517,7 @@
         }
     </style>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timoschaefer/jQuery-Sakura/jquery-sakura.css">
 </head>
 
 <body class="lazyload">
@@ -6396,7 +6397,7 @@
             }
 
             .wedding-comments-list {
-                height: 350px;
+                height: 450px;
             }
         }
     </style>
@@ -6770,547 +6771,13 @@
         }
     </script>
 
-</body>
-
-</html>
-
-<!-- <!DOCTYPE html>
-<html lang="vi">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Wedding Master - Realtime Comments</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #333;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .header {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 30px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .header h1 {
-            color: #e91e63;
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #e91e63, #9c27b0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header p {
-            color: #666;
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .comments-section {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .comments-section h2 {
-            color: #e91e63;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .comments-list {
-            height: 500px;
-            overflow-y: auto;
-            padding-right: 10px;
-            margin-bottom: 25px;
-        }
-
-        .comment {
-            display: flex;
-            gap: 15px;
-            padding: 18px;
-            margin-bottom: 18px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            border-left: 4px solid #e91e63;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .comment:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .comment-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            flex-shrink: 0;
-            border: 3px solid #fff;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .comment-content {
-            flex-grow: 1;
-        }
-
-        .comment-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .comment-name {
-            font-weight: 700;
-            color: #e91e63;
-            font-size: 1.1rem;
-        }
-
-        .comment-time {
-            color: #888;
-            font-size: 0.85rem;
-        }
-
-        .comment-message {
-            color: #555;
-            line-height: 1.5;
-        }
-
-        .form-section {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .form-section h2 {
-            color: #e91e63;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 600;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        input:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #e91e63;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-            font-family: inherit;
-        }
-
-        button {
-            background: linear-gradient(45deg, #e91e63, #9c27b0);
-            color: white;
-            border: none;
-            padding: 16px 30px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 15px rgba(233, 30, 99, 0.3);
-        }
-
-        button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 10px;
-            background: #f0f8ff;
-            font-size: 0.9rem;
-        }
-
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #4caf50;
-            animation: pulse 2s infinite;
-        }
-
-        .offline {
-            background: #f44336;
-        }
-
-        @keyframes pulse {
-            0% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: #888;
-        }
-
-        .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: #ddd;
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 25px;
-            background: #4caf50;
-            color: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            display: none;
-            z-index: 1000;
-        }
-
-        footer {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            color: #777;
-            font-size: 0.9rem;
-        }
-
-        /* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #e0e0e0;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #d0d0d0;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="header">
-        <h1><i class="fas fa-heart"></i> My Wedding Master</h1>
-        <p>Chia sẻ những lời chúc và kỷ niệm đáng nhớ với chúng tôi. Mọi bình luận sẽ hiển thị ngay lập tức!</p>
-    </div>
-
-    <div class="container">
-        <div class="comments-section">
-            <h2><i class="fas fa-comments"></i> Lời chúc mới nhất</h2>
-            <div class="comments-list" id="commentsList">
-                <div class="empty-state">
-                    <i class="fas fa-comment-slash"></i>
-                    <h3>Chưa có lời chúc nào</h3>
-                    <p>Hãy là người đầu tiên gửi lời chúc đến cặp đôi!</p>
-                </div>
-            </div>
-
-            <div class="status-indicator">
-                <div class="status-dot" id="statusDot"></div>
-                <span id="statusText">Đang kết nối...</span>
-            </div>
-        </div>
-
-        <div class="form-section">
-            <h2><i class="fas fa-edit"></i> Gửi lời chúc của bạn</h2>
-            <form id="commentForm">
-                <div class="form-group">
-                    <label for="name">Tên của bạn *</label>
-                    <input type="text" id="name" placeholder="Nhập tên của bạn" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Lời chúc *</label>
-                    <textarea id="message" placeholder="Viết lời chúc của bạn ở đây..." required></textarea>
-                </div>
-
-                <button type="submit" id="submitBtn">
-                    <i class="fas fa-paper-plane"></i> Gửi lời chúc
-                </button>
-            </form>
-
-            <div class="status-indicator">
-                <p><i class="fas fa-info-circle"></i> Lời chúc của bạn sẽ hiển thị ngay lập tức cho tất cả mọi người</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="notification" id="notification">
-        <i class="fas fa-check-circle"></i> <span id="notificationText">Lời chúc đã được gửi thành công!</span>
-    </div>
-
-    <footer>
-        <p>My Wedding Master &copy; 2023 - Hệ thống bình luận realtime | Powered by Socket.io & MongoDB</p>
-    </footer>
-
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/gh/timoschaefer/jQuery-Sakura/jquery-sakura.min.js'></script>
     <script>
-        // Kết nối Socket.io
-        const socket = io();
-
-        // DOM Elements
-        const commentForm = document.getElementById('commentForm');
-        const commentsList = document.getElementById('commentsList');
-        const statusDot = document.getElementById('statusDot');
-        const statusText = document.getElementById('statusText');
-        const notification = document.getElementById('notification');
-        const notificationText = document.getElementById('notificationText');
-        const submitBtn = document.getElementById('submitBtn');
-
-        // Trạng thái kết nối
-        socket.on('connect', () => {
-            statusDot.classList.remove('offline');
-            statusText.textContent = 'Đã kết nối - Cập nhật realtime';
-        });
-
-        socket.on('disconnect', () => {
-            statusDot.classList.add('offline');
-            statusText.textContent = 'Mất kết nối - Đang thử kết nối lại...';
-        });
-
-        // Nhận lịch sử comment khi kết nối
-        socket.on('comment-history', (comments) => {
-            updateCommentsList(comments);
-        });
-
-        // Nhận comment mới
-        socket.on('new-comment', (comment) => {
-            addCommentToUI(comment);
-            showNotification('Có lời chúc mới từ ' + comment.name);
-        });
-
-        // Xử lý lỗi
-        socket.on('error', (error) => {
-            showNotification('Lỗi: ' + error, true);
-        });
-
-        // Xử lý form submit
-        commentForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const name = document.getElementById('name').value.trim();
-            const message = document.getElementById('message').value.trim();
-
-            if (!name || !message) {
-                showNotification('Vui lòng điền đầy đủ thông tin', true);
-                return;
-            }
-
-            // Tạm thời vô hiệu hóa nút gửi
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
-
-            try {
-                // Gửi comment qua Socket.io
-                socket.emit('new-comment', { name, message });
-
-                // Xóa form
-                commentForm.reset();
-
-                // Hiển thị thông báo
-                showNotification('Lời chúc của bạn đã được gửi thành công!');
-            } catch (error) {
-                showNotification('Có lỗi xảy ra khi gửi lời chúc', true);
-                console.error('Error:', error);
-            } finally {
-                // Kích hoạt lại nút gửi
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Gửi lời chúc';
-            }
-        });
-
-        // Hàm cập nhật danh sách comment
-        function updateCommentsList(comments) {
-            if (comments.length === 0) return;
-
-            // Xóa trạng thái trống
-            const emptyState = commentsList.querySelector('.empty-state');
-            if (emptyState) emptyState.remove();
-
-            // Xóa comment cũ (giữ lại tối đa 50 comment)
-            while (commentsList.children.length >= 50) {
-                commentsList.removeChild(commentsList.lastChild);
-            }
-
-            // Thêm comment mới (theo thứ tự mới nhất lên đầu)
-            commentsList.innerHTML = '';
-            comments.forEach(comment => {
-                addCommentToUI(comment, false);
-            });
-        }
-
-        // Hàm thêm comment vào UI
-        function addCommentToUI(comment, prepend = true) {
-            const emptyState = commentsList.querySelector('.empty-state');
-            if (emptyState) emptyState.remove();
-
-            const commentElement = document.createElement('div');
-            commentElement.className = 'comment';
-            commentElement.innerHTML = `
-                <img src="${comment.avatar}" alt="${comment.name}" class="comment-avatar">
-                <div class="comment-content">
-                    <div class="comment-header">
-                        <div class="comment-name">${escapeHtml(comment.name)}</div>
-                        <div class="comment-time">${formatDate(comment.createdAt)}</div>
-                    </div>
-                    <div class="comment-message">${escapeHtml(comment.message)}</div>
-                </div>
-            `;
-
-            if (prepend) {
-                commentsList.prepend(commentElement);
-            } else {
-                commentsList.appendChild(commentElement);
-            }
-
-            // Cuộn lên đầu danh sách khi có comment mới
-            if (prepend) {
-                commentsList.scrollTop = 0;
-            }
-        }
-
-        // Hàm hiển thị thông báo
-        function showNotification(message, isError = false) {
-            notificationText.textContent = message;
-            notification.style.background = isError ? '#f44336' : '#4caf50';
-            notification.style.display = 'block';
-
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 4000);
-        }
-
-        // Hàm định dạng ngày tháng
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            const now = new Date();
-            const diffMs = now - date;
-            const diffMins = Math.floor(diffMs / 60000);
-            const diffHours = Math.floor(diffMs / 3600000);
-            const diffDays = Math.floor(diffMs / 86400000);
-
-            if (diffMins < 1) return 'Vừa xong';
-            if (diffMins < 60) return `${diffMins} phút trước`;
-            if (diffHours < 24) return `${diffHours} giờ trước`;
-            if (diffDays < 7) return `${diffDays} ngày trước`;
-
-            return date.toLocaleDateString('vi-VN');
-        }
-
-        // Hàm bảo vệ XSS
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // Tải comment khi trang được tải
-        window.addEventListener('load', () => {
-            fetch('/api/comments')
-                .then(response => response.json())
-                .then(comments => {
-                    updateCommentsList(comments);
-                })
-                .catch(error => {
-                    console.error('Error loading comments:', error);
-                });
+        $(window).on('load', function () {
+            $('body').sakura();
         });
     </script>
 </body>
 
-</html> -->
+</html>
