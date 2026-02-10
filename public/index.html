@@ -4518,14 +4518,6 @@
     </style>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timoschaefer/jQuery-Sakura/jquery-sakura.css">
-    <style>
-        /* Đảm bảo hoa rơi phủ màn hình và xuyên suốt khi cuộn */
-        .sakura {
-            position: fixed !important;
-            z-index: 999999 !important;
-            pointer-events: none;
-        }
-    </style>
 </head>
 
 <body class="lazyload">
@@ -6780,18 +6772,326 @@
     </script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src='https://cdn.jsdelivr.net/gh/timoschaefer/jQuery-Sakura/jquery-sakura.min.js'></script>
+    <style>
+        .sakura {
+            position: absolute;
+            top: -10px;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10%;
+            }
+
+            100% {
+                top: 100%;
+            }
+        }
+
+        @keyframes blow-soft-left {
+            0% {
+                margin-left: 0;
+            }
+
+            100% {
+                margin-left: -50%;
+            }
+        }
+
+        @keyframes blow-medium-left {
+            0% {
+                margin-left: 0;
+            }
+
+            100% {
+                margin-left: -100%;
+            }
+        }
+
+        @keyframes blow-soft-right {
+            0% {
+                margin-left: 0;
+            }
+
+            100% {
+                margin-left: 50%;
+            }
+        }
+
+        @keyframes blow-medium-right {
+            0% {
+                margin-left: 0;
+            }
+
+            100% {
+                margin-left: 100%;
+            }
+        }
+
+        @keyframes sway-0 {
+            0% {
+                transform: rotate(-5deg);
+            }
+
+            50% {
+                transform: rotate(5deg);
+            }
+
+            100% {
+                transform: rotate(-5deg);
+            }
+        }
+
+        @keyframes sway-1 {
+            0% {
+                transform: rotate(10deg);
+            }
+
+            50% {
+                transform: rotate(-10deg);
+            }
+
+            100% {
+                transform: rotate(10deg);
+            }
+        }
+
+        @keyframes sway-2 {
+            0% {
+                transform: rotate(-15deg);
+            }
+
+            50% {
+                transform: rotate(15deg);
+            }
+
+            100% {
+                transform: rotate(-15deg);
+            }
+        }
+
+        @keyframes sway-3 {
+            0% {
+                transform: rotate(20deg);
+            }
+
+            50% {
+                transform: rotate(-20deg);
+            }
+
+            100% {
+                transform: rotate(20deg);
+            }
+        }
+
+        @keyframes sway-4 {
+            0% {
+                transform: rotate(-25deg);
+            }
+
+            50% {
+                transform: rotate(25deg);
+            }
+
+            100% {
+                transform: rotate(-25deg);
+            }
+        }
+
+        @keyframes sway-5 {
+            0% {
+                transform: rotate(30deg);
+            }
+
+            50% {
+                transform: rotate(-30deg);
+            }
+
+            100% {
+                transform: rotate(30deg);
+            }
+        }
+
+        @keyframes sway-6 {
+            0% {
+                transform: rotate(-35deg);
+            }
+
+            50% {
+                transform: rotate(35deg);
+            }
+
+            100% {
+                transform: rotate(-35deg);
+            }
+        }
+
+        @keyframes sway-7 {
+            0% {
+                transform: rotate(40deg);
+            }
+
+            50% {
+                transform: rotate(-40deg);
+            }
+
+            100% {
+                transform: rotate(40deg);
+            }
+        }
+
+        @keyframes sway-8 {
+            0% {
+                transform: rotate(-45deg);
+            }
+
+            50% {
+                transform: rotate(45deg);
+            }
+
+            100% {
+                transform: rotate(-45deg);
+            }
+        }
+    </style>
     <script>
-        $(function () {
-            $('body').sakura({
-                blowAnimations: ['blow-soft-left', 'blow-medium-left', 'blow-soft-right', 'blow-medium-right'],
-                className: 'sakura',
-                fallSpeed: 1,
-                maxSize: 14,
-                minSize: 10,
-                newOn: 150, // Mật độ hoa dày hơn (mặc định 300)
-                swayAnimations: ['sway-0', 'sway-1', 'sway-2', 'sway-3', 'sway-4', 'sway-5', 'sway-6', 'sway-7', 'sway-8']
-            });
+        (function ($) {
+            // requestAnimationFrame Polyfill
+            var lastTime = 0;
+            var vendors = ['webkit', 'o', 'ms', 'moz', ''];
+            var vendorCount = vendors.length;
+
+            for (var x = 0; x < vendorCount && !window.requestAnimationFrame; ++x) {
+                window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+                window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+            }
+
+            if (!window.requestAnimationFrame) {
+                window.requestAnimationFrame = function (callback) {
+                    var currTime = new Date().getTime();
+                    var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+                    var id = window.setTimeout(function () { callback(currTime + timeToCall); }, timeToCall);
+                    lastTime = currTime + timeToCall;
+                    return id;
+                };
+            }
+
+            if (!window.cancelAnimationFrame) {
+                window.cancelAnimationFrame = function (id) {
+                    clearTimeout(id);
+                };
+            }
+
+            // Prefixed event check
+            $.fn.prefixedEvent = function (type, callback) {
+                for (var x = 0; x < vendorCount; ++x) {
+                    if (!vendors[x]) {
+                        type = type.toLowerCase();
+                    }
+                    el = (this instanceof jQuery ? this[0] : this);
+                    el.addEventListener(vendors[x] + type, callback, false);
+                }
+                return this;
+            };
+
+            // Calculate document height instead of viewport
+            function getDocumentHeight() {
+                return Math.max(
+                    document.body.scrollHeight, document.documentElement.scrollHeight,
+                    document.body.offsetHeight, document.documentElement.offsetHeight,
+                    document.body.clientHeight, document.documentElement.clientHeight
+                );
+            }
+
+            // Random array element
+            function randomArrayElem(arr) {
+                return arr[Math.floor(Math.random() * arr.length)];
+            }
+
+            // Random integer
+            function randomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            $.fn.sakura = function (event, options) {
+                var target = this.selector == "" ? $('body') : this;
+
+                var defaults = {
+                    blowAnimations: ['blow-soft-left', 'blow-medium-left', 'blow-soft-right', 'blow-medium-right'],
+                    className: 'sakura',
+                    fallSpeed: 0.8,
+                    maxSize: 20,
+                    minSize: 10,
+                    newOn: 200,
+                    swayAnimations: ['sway-0', 'sway-1', 'sway-2', 'sway-3', 'sway-4', 'sway-5', 'sway-6', 'sway-7', 'sway-8']
+                };
+
+                var options = $.extend({}, defaults, options);
+
+                if (typeof event === 'undefined' || event === 'start') {
+                    // Ensure relative positioning on body for absolute petals
+                    target.css({ 'overflow-x': 'hidden', 'position': 'relative', 'min-height': '100vh' });
+
+                    var petalCreator = function () {
+                        if (target.data('sakura-anim-id')) {
+                            setTimeout(function () {
+                                requestAnimationFrame(petalCreator);
+                            }, options.newOn);
+                        }
+
+                        var blowAnimation = randomArrayElem(options.blowAnimations);
+                        var swayAnimation = randomArrayElem(options.swayAnimations);
+
+                        // KEY CHANGE: Use document height for calculation
+                        var docHeight = getDocumentHeight();
+                        var fallTime = ((docHeight * 0.007) + Math.round(Math.random() * 5)) * options.fallSpeed;
+
+                        var animations =
+                            'fall ' + fallTime + 's linear 0s 1' + ', ' +
+                            blowAnimation + ' ' + (((fallTime > 30 ? fallTime : 30) - 20) + randomInt(0, 20)) + 's linear 0s infinite' + ', ' +
+                            swayAnimation + ' ' + randomInt(2, 4) + 's linear 0s infinite';
+
+                        var petal = $('<div class="' + options.className + '" />');
+                        var height = randomInt(options.minSize, options.maxSize);
+                        var width = height - Math.floor(randomInt(0, options.minSize) / 3);
+
+                        petal.prefixedEvent('AnimationEnd', function () {
+                            $(this).remove(); // Simple remove on end
+                        })
+                            .css({
+                                '-webkit-animation': animations,
+                                animation: animations,
+                                'border-radius': randomInt(options.maxSize, (options.maxSize + Math.floor(Math.random() * 10))) + 'px ' + randomInt(1, Math.floor(width / 4)) + 'px',
+                                height: height + 'px',
+                                left: (Math.random() * document.documentElement.clientWidth - 100) + 'px',
+                                'margin-top': (-(Math.floor(Math.random() * 20) + 15)) + 'px',
+                                width: width + 'px',
+                                background: 'linear-gradient(120deg, rgba(255, 130, 160, 0.9), rgba(255, 160, 190, 0.9))',
+                                position: 'absolute'
+                            });
+
+                        target.append(petal);
+                    };
+
+                    target.data('sakura-anim-id', requestAnimationFrame(petalCreator));
+
+                } else if (event === 'stop') {
+                    var animId = target.data('sakura-anim-id');
+                    if (animId) {
+                        cancelAnimationFrame(animId);
+                        target.data('sakura-anim-id', null);
+                    }
+                    setTimeout(function () {
+                        $('.' + options.className).remove();
+                    }, (options.newOn + 50));
+                }
+            };
+        }(jQuery));
+
+        $(window).on('load', function () {
+            $('body').sakura();
         });
     </script>
 </body>
