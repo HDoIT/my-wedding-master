@@ -50,7 +50,9 @@ io.on('connection', (socket) => {
             const comment = new Comment({
                 name: commentData.name,
                 message: commentData.message,
-                avatar: commentData.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(commentData.name)}&background=random`
+                avatar: commentData.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(commentData.name)}&background=random`,
+                likes: [],
+                replies: []
             });
 
             await comment.save();
@@ -58,6 +60,58 @@ io.on('connection', (socket) => {
         } catch (error) {
             console.error('Error saving comment:', error);
             socket.emit('error', 'Failed to save comment');
+        }
+    });
+
+    // Xử lý like comment (toggle)
+    socket.on('like-comment', async ({ commentId, username }) => {
+        try {
+            const comment = await Comment.findById(commentId);
+            if (comment) {
+                let likes = Array.isArray(comment.likes) ? comment.likes : [];
+                const userIndex = likes.indexOf(username);
+
+                if (userIndex > -1) {
+                    // Unlike - remove user from likes array
+                    likes.splice(userIndex, 1);
+                } else {
+                    // Like - add user to likes array
+                    likes.push(username);
+                }
+
+                comment.likes = likes;
+                await comment.save();
+
+                io.emit('comment-liked', {
+                    commentId,
+                    likes: likes,
+                    likeCount: likes.length
+                });
+            }
+        } catch (error) {
+            console.error('Error liking comment:', error);
+        }
+    });
+
+    // Xử lý reply
+    socket.on('new-reply', async ({ parentId, name, message }) => {
+        try {
+            const comment = await Comment.findById(parentId);
+            if (comment) {
+                const reply = {
+                    _id: new mongoose.Types.ObjectId(),
+                    name,
+                    message,
+                    createdAt: new Date()
+                };
+
+                comment.replies.push(reply);
+                await comment.save();
+
+                io.emit('new-reply', { ...reply, parentId });
+            }
+        } catch (error) {
+            console.error('Error saving reply:', error);
         }
     });
 

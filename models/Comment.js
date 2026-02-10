@@ -16,6 +16,17 @@ const commentSchema = new mongoose.Schema({
         type: String,
         default: 'https://ui-avatars.com/api/?name=Guest&background=random'
     },
+    likes: [{
+        type: String
+    }],
+    replies: [{
+        name: String,
+        message: String,
+        createdAt: {
+            type: Date,
+            default: Date.now
+        }
+    }],
     createdAt: {
         type: Date,
         default: Date.now
