@@ -7,6 +7,7 @@ const path = require('path');
 require('dotenv').config();
 
 const Comment = require('./models/Comment');
+const Guest = require('./models/Guest');
 
 const app = express();
 const server = http.createServer(app);
@@ -27,6 +28,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
 // Kết nối MongoDB
@@ -143,6 +148,31 @@ app.post('/api/comments', async (req, res) => {
         res.status(201).json(comment);
     } catch (error) {
         res.status(500).json({ error: 'Failed to save comment' });
+    }
+});
+
+// Guest API Routes for Card Generator
+app.post('/api/guests', async (req, res) => {
+    try {
+        const { name } = req.body;
+        if (!name) return res.status(400).json({ error: 'Name is required' });
+
+        const guest = new Guest({ name });
+        await guest.save();
+        res.status(201).json(guest);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to save guest' });
+    }
+});
+
+app.get('/api/guests/:slug', async (req, res) => {
+    try {
+        const guest = await Guest.findOne({ slug: req.params.slug });
+        if (!guest) return res.status(404).json({ error: 'Guest not found' });
+        res.json(guest);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch guest' });
     }
 });
 

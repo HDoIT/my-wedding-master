@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Tạo Thiệp Mời</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #800006;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #800006;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #800006, #a00008);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        .result {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .link-display {
+            word-break: break-all;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+
+        .copy-btn {
+            background: #333;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Tạo Thiệp Mời 💌</h1>
+        <div class="form-group">
+            <label for="guestName">Tên Khách Mời</label>
+            <input type="text" id="guestName" placeholder="Nhập tên khách mời (VD: Anh A, Chị B)..."
+                onkeypress="handleEnter(event)">
+        </div>
+        <button onclick="createInvite()">Tạo Thiệp</button>
+
+        <div class="result" id="resultArea">
+            <label>Link thiệp mời:</label>
+            <div class="link-display" id="linkDisplay"></div>
+            <button class="copy-btn" onclick="copyLink()">Sao chép Link</button>
+        </div>
+    </div>
+
+    <script>
+        function handleEnter(e) {
+            if (e.key === 'Enter') {
+                createInvite();
+            }
+        }
+
+        async function createInvite() {
+            const nameInput = document.getElementById('guestName');
+            const name = nameInput.value.trim();
+
+            if (!name) {
+                alert('Vui lòng nhập tên khách mời!');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/guests', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    const protocol = window.location.protocol;
+                    const host = window.location.host;
+                    // Changed parameter from 'g' to 'guest' or keep 'g' as shorthand
+                    // User asked for "mã hóa tên đó và lưu vào url", so we use the slug (g=SLUG)
+                    const fullLink = `${protocol}//${host}/index_main.html?g=${data.slug}`;
+
+                    document.getElementById('linkDisplay').textContent = fullLink;
+                    document.getElementById('resultArea').classList.add('show');
+                    nameInput.value = ''; // Reset input
+                    nameInput.focus();
+                } else {
+                    alert('Lỗi: ' + (data.error || 'Không thể tạo thiệp'));
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Đã xảy ra lỗi khi tạo thiệp');
+            }
+        }
+
+        function copyLink() {
+            const linkText = document.getElementById('linkDisplay').textContent;
+            navigator.clipboard.writeText(linkText).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = 'Đã sao chép! ✅';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+
+</html>

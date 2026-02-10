@@ -3171,7 +3171,7 @@
 
         #BOX8 {
             width: 420px;
-            height: 102px;
+            height: 140px;
         }
 
         #BOX8>.ladi-box,
@@ -3188,12 +3188,12 @@
 
         #PARAGRAPH14 {
             width: 421px;
-            top: 22px;
+            top: 12px;
             left: 0px;
         }
 
         #PARAGRAPH14>.ladi-paragraph {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: bold;
             line-height: 1.6;
             color: rgb(255, 255, 255);
@@ -3463,7 +3463,7 @@
         #IMAGE83 {
             width: 138.384px;
             height: 68.5px;
-            top: 198.311px;
+            top: 235.311px;
             left: 364px;
         }
 
@@ -3488,7 +3488,7 @@
         }
 
         #IMAGE84 {
-            top: 104.561px;
+            top: 124.561px;
             left: -118px;
         }
 
@@ -7092,6 +7092,31 @@
 
         $(window).on('load', function () {
             $('body').sakura();
+        });
+    </script>
+    <script>
+        // Invitation Logic
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const guestSlug = urlParams.get('g');
+
+            if (guestSlug) {
+                try {
+                    const response = await fetch(`/api/guests/${guestSlug}`);
+                    if (response.ok) {
+                        const guest = await response.json();
+                        // Target the element at line ~4892
+                        const inviteEl = document.querySelector('#PARAGRAPH14 .ladi-paragraph');
+                        if (inviteEl) {
+                            // User requested format: trân trọng kính mơi <br> tên khách mời <br> tới dự bữa cơm thân mật cùng gia đình chúng tôi
+                            // Correcting typo "mơi" -> "MỜI" and adding basic styling for the name
+                            inviteEl.innerHTML = `TRÂN TRỌNG KÍNH MỜI<br><span class="guest-name-highlight" style="font-size: 20px; font-weight: bold; color: #5fff5b; display: inline-block;">${guest.name}</span><br>TỚI DỰ BỮA CƠM THÂN MẬT CÙNG GIA ĐÌNH CHÚNG TÔI`;
+                        }
+                    }
+                } catch (e) {
+                    console.error('Error loading guest info:', e);
+                }
+            }
         });
     </script>
 </body>
