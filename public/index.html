@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>THIỆP MỜI CƯỚI HỮU ĐỘ - MỸ DUYÊN</title>
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -5254,7 +5255,8 @@
                             <!-- Comment Form -->
                             <div class="wedding-comment-form">
                                 <textarea id="wedding-comment-input" placeholder="Viết lời chúc của bạn..."></textarea>
-                                <button class="wedding-submit-btn" id="wedding-submit-comment-btn">💌 Gửi Lời
+                                <button class="wedding-submit-btn" id="wedding-submit-comment-btn"><i
+                                        class="fas fa-paper-plane"></i> Gửi Lời
                                     Chúc</button>
                             </div>
 
@@ -6483,7 +6485,9 @@
         }
 
         .wedding-empty-state::before {
-            content: '💬';
+            content: '\f27a';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
             font-size: 4rem;
             display: block;
             margin-bottom: 15px;
@@ -6727,8 +6731,10 @@
 
     <!-- Floating Action Buttons moved below or kept here -->
     <div class="wedding-fab-container">
-        <button class="wedding-fab" onclick="weddingScrollToGift()" title="Mừng cưới">🎁</button>
-        <button class="wedding-fab" onclick="weddingScrollToComment()" title="Gửi lời chúc">💬</button>
+        <button class="wedding-fab" onclick="weddingScrollToGift()" title="Mừng cưới"><i
+                class="fas fa-gift"></i></button>
+        <button class="wedding-fab" onclick="weddingScrollToComment()" title="Gửi lời chúc"><i
+                class="fas fa-comment-dots"></i></button>
     </div>
 
     <!-- Notification -->
@@ -6995,10 +7001,10 @@
                 </div>
                 <div class="wedding-comment-actions">
                     <button class="wedding-btn-like ${likedClass}" onclick="weddingLikeComment('${comment._id}')">
-                        ❤️ <span class="wedding-like-count">${likeCount}</span>
+                        <i class="fas fa-heart"></i> <span class="wedding-like-count">${likeCount}</span>
                     </button>
                     <button class="wedding-btn-reply" onclick="weddingToggleReplyForm('${comment._id}')">
-                        💬 Trả lời
+                        <i class="fas fa-reply"></i> Trả lời
                     </button>
                     <div class="wedding-comment-time">${weddingFormatTime(comment.createdAt)}</div>
                 </div>
