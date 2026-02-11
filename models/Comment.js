@@ -11,6 +11,11 @@ const commentSchema = new mongoose.Schema({
         trim: true,
         default: null
     },
+    side: {
+        type: String,
+        trim: true,
+        default: null
+    },
     message: {
         type: String,
         required: true,
@@ -26,6 +31,7 @@ const commentSchema = new mongoose.Schema({
     }],
     replies: [{
         name: String,
+        side: String,
         message: String,
         createdAt: {
             type: Date,

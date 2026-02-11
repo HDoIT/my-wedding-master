@@ -3538,7 +3538,9 @@
             text-align: center;
         }
 
-        #BUTTON2 {
+        #BUTTON2,
+        #BUTTON_MAP_GROOM,
+        #BUTTON_MAP_BRIDE {
             width: 160px;
             height: 40px;
             top: 632.811px;
@@ -3546,18 +3548,24 @@
         }
 
         #BUTTON2>.ladi-button>.ladi-button-background,
-        #BUTTON4>.ladi-button>.ladi-button-background {
+        #BUTTON4>.ladi-button>.ladi-button-background,
+        #BUTTON_MAP_GROOM>.ladi-button>.ladi-button-background,
+        #BUTTON_MAP_BRIDE>.ladi-button>.ladi-button-background {
             background-color: rgb(138 3 3 / 70%);
         }
 
-        #BUTTON2>.ladi-button {
+        #BUTTON2>.ladi-button,
+        #BUTTON_MAP_GROOM>.ladi-button,
+        #BUTTON_MAP_BRIDE>.ladi-button {
             border-width: 1px;
             border-radius: 100px;
             border-style: solid;
             border-color: #800006;
         }
 
-        #BUTTON2.ladi-animation>.ladi-button {
+        #BUTTON2.ladi-animation>.ladi-button,
+        #BUTTON_MAP_GROOM.ladi-animation>.ladi-button,
+        #BUTTON_MAP_BRIDE.ladi-animation>.ladi-button {
             animation-name: pulse;
             animation-delay: 1s;
             animation-duration: 2s;
@@ -3565,33 +3573,45 @@
         }
 
         #BUTTON_SHAPE2>.ladi-shape,
-        #BUTTON_SHAPE4>.ladi-shape {
+        #BUTTON_SHAPE4>.ladi-shape,
+        #BUTTON_SHAPE_GROOM>.ladi-shape,
+        #BUTTON_SHAPE_BRIDE>.ladi-shape {
             width: 18.9021px;
             height: 20px;
         }
 
-        #BUTTON_SHAPE2>.ladi-shape {
+        #BUTTON_SHAPE2>.ladi-shape,
+        #BUTTON_SHAPE_GROOM>.ladi-shape,
+        #BUTTON_SHAPE_BRIDE>.ladi-shape {
             left: 20px;
         }
 
         #BUTTON_SHAPE2 svg:last-child,
-        #BUTTON_SHAPE4 svg:last-child {
+        #BUTTON_SHAPE4 svg:last-child,
+        #BUTTON_SHAPE_GROOM svg:last-child,
+        #BUTTON_SHAPE_BRIDE svg:last-child {
             fill: rgb(255, 255, 255);
         }
 
-        #BUTTON_TEXT2 {
+        #BUTTON_TEXT2,
+        #BUTTON_TEXT_GROOM,
+        #BUTTON_TEXT_BRIDE {
             width: 158px;
         }
 
         #BUTTON_TEXT2,
         #BUTTON_TEXT3,
-        #BUTTON_TEXT4 {
+        #BUTTON_TEXT4,
+        #BUTTON_TEXT_GROOM,
+        #BUTTON_TEXT_BRIDE {
             top: 9px;
             left: 0px;
         }
 
         #BUTTON_TEXT2>.ladi-headline,
-        #BUTTON_TEXT3>.ladi-headline {
+        #BUTTON_TEXT3>.ladi-headline,
+        #BUTTON_TEXT_GROOM>.ladi-headline,
+        #BUTTON_TEXT_BRIDE>.ladi-headline {
             font-size: 14px;
             font-weight: bold;
             line-height: 1.6;
@@ -3822,7 +3842,7 @@
         }
 
         #PARAGRAPH25 {
-            top: 275.751px;
+            top: 325.751px;
             left: 1.5px;
         }
 
@@ -3837,7 +3857,7 @@
         }
 
         #PARAGRAPH26 {
-            top: 332.751px;
+            top: 385.751px;
             left: 1.5px;
         }
 
@@ -5070,15 +5090,14 @@
 
                 <!-- Map Buttons -->
                 <div
-                    style="display: flex; justify-content: center; gap: 20px; width: 100%; position: relative; z-index: 100; margin-bottom: 20px; margin-top: 20px;">
+                    style="display: flex; justify-content: center; gap: 20px; width: 100%; position: absolute;top:255px; z-index: 100; margin-bottom: 20px; margin-top: 20px;">
                     <!-- Groom Map Button -->
-                    <a href="https://maps.app.goo.gl/CAQSCy1FfAcMJCSg7" target="_blank" id="BUTTON_MAP_GROOM"
-                        class='ladi-element'
-                        style="position: relative; width: 160px; height: 50px; top: auto; left: auto;">
+                    <a href="https://maps.app.goo.gl/e2SXj1VX5fasTSJ28" target="_blank" id="BUTTON_MAP_GROOM"
+                        class='ladi-element ladi-animation'
+                        style="position: relative; width: 160px; height: 40px; top: auto; left: auto;">
                         <div class='ladi-button'>
                             <div class="ladi-button-background"></div>
-                            <div id="BUTTON_SHAPE_GROOM" class='ladi-element ladi-button-shape'
-                                style="top: 0; left: 0;">
+                            <div id="BUTTON_SHAPE_GROOM" class='ladi-element ladi-button-shape'>
                                 <div class='ladi-shape'><svg xmlns="http://www.w3.org/2000/svg" width="100%"
                                         height="100%" preserveAspectRatio="none" viewBox="0 0 24 24" class=""
                                         fill="#FFFFFF">
@@ -5087,20 +5106,18 @@
                                         </path>
                                     </svg></div>
                             </div>
-                            <div id="BUTTON_TEXT_GROOM" class='ladi-element ladi-button-headline'
-                                style="top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                                <p class='ladi-headline' style="color: white; font-weight: bold;">Chỉ Đường Nhà Trai</p>
+                            <div id="BUTTON_TEXT_GROOM" class='ladi-element ladi-button-headline'>
+                                <p class='ladi-headline'>Nhà Trai</p>
                             </div>
                         </div>
                     </a>
 
-                    <!-- Bride Map Button -->
-                    <a href="#" target="_blank" id="BUTTON_MAP_BRIDE" class='ladi-element'
-                        style="position: relative; width: 160px; height: 50px; top: auto; left: auto;">
+                    <a href="https://maps.app.goo.gl/CAQSCy1FfAcMJCSg7" target="_blank" id="BUTTON_MAP_BRIDE"
+                        class='ladi-element ladi-animation'
+                        style="position: relative; width: 160px; height: 40px; top: auto; left: auto;">
                         <div class='ladi-button'>
                             <div class="ladi-button-background"></div>
-                            <div id="BUTTON_SHAPE_BRIDE" class='ladi-element ladi-button-shape'
-                                style="top: 0; left: 0;">
+                            <div id="BUTTON_SHAPE_BRIDE" class='ladi-element ladi-button-shape'>
                                 <div class='ladi-shape'><svg xmlns="http://www.w3.org/2000/svg" width="100%"
                                         height="100%" preserveAspectRatio="none" viewBox="0 0 24 24" class=""
                                         fill="#FFFFFF">
@@ -5109,9 +5126,8 @@
                                         </path>
                                     </svg></div>
                             </div>
-                            <div id="BUTTON_TEXT_BRIDE" class='ladi-element ladi-button-headline'
-                                style="top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                                <p class='ladi-headline' style="color: white; font-weight: bold;">Chỉ Đường Nhà Gái</p>
+                            <div id="BUTTON_TEXT_BRIDE" class='ladi-element ladi-button-headline'>
+                                <p class='ladi-headline'>Nhà Gái</p>
                             </div>
                         </div>
                     </a>
@@ -6402,6 +6418,28 @@
             }
         }
 
+        .wedding-comment-tag {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 10px;
+            font-weight: 500;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .wedding-comment-tag.nha-trai {
+            background-color: #e3f2fd;
+            color: #1976d2;
+            border: 1px solid #bbdefb;
+        }
+
+        .wedding-comment-tag.nha-gai {
+            background-color: #fce4ec;
+            color: #c2185b;
+            border: 1px solid #f8bbd0;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .wedding-comments-container {
@@ -6474,6 +6512,18 @@
         const WEDDING_USERNAME_KEY = 'wedding_username';
         let weddingCurrentUsername = localStorage.getItem(WEDDING_USERNAME_KEY) || '';
 
+        // Detect side from line 5010
+        function detectWeddingSide() {
+            const sideEl = document.querySelector('#HEADLINE19 .ladi-headline span');
+            if (sideEl) {
+                const text = sideEl.textContent.trim();
+                if (text.toLowerCase().includes('trai')) return 'Nhà Trai';
+                if (text.toLowerCase().includes('gái')) return 'Nhà Gái';
+            }
+            return null;
+        }
+        const weddingCurrentSide = detectWeddingSide();
+
         // DOM Elements
         const weddingUsernameInput = document.getElementById('wedding-username-input');
         const weddingEditNameBtn = document.getElementById('wedding-edit-name-btn');
@@ -6538,6 +6588,7 @@
             weddingSocket.emit('new-comment', {
                 name: weddingCurrentUsername,
                 realName: (window.weddingRealName || null),
+                side: weddingCurrentSide,
                 message: message
             });
 
@@ -6617,6 +6668,7 @@
             weddingSocket.emit('new-reply', {
                 parentId: commentId,
                 name: weddingCurrentUsername,
+                side: weddingCurrentSide,
                 message: message
             });
 
@@ -6698,7 +6750,10 @@
                 <div class="wedding-comment-header">
                     <div class="wedding-comment-avatar">${comment.name.charAt(0).toUpperCase()}</div>
                     <div class="wedding-comment-info">
-                        <div class="wedding-comment-name">${weddingEscapeHtml(comment.name)}</div>
+                        <div class="wedding-comment-name">
+                            ${weddingEscapeHtml(comment.name)}
+                            ${comment.side ? `<span class="wedding-comment-tag ${comment.side === 'Nhà Trai' ? 'nha-trai' : 'nha-gai'}">${comment.side}</span>` : ''}
+                        </div>
                     </div>
                 </div>
                 <div class="wedding-comment-body">
@@ -6732,7 +6787,10 @@
                     <div class="wedding-comment-header">
                         <div class="wedding-comment-avatar">${reply.name.charAt(0).toUpperCase()}</div>
                         <div class="wedding-comment-info">
-                            <div class="wedding-comment-name">${weddingEscapeHtml(reply.name)}</div>
+                            <div class="wedding-comment-name">
+                                ${weddingEscapeHtml(reply.name)}
+                                ${reply.side ? `<span class="wedding-comment-tag ${reply.side === 'Nhà Trai' ? 'nha-trai' : 'nha-gai'}">${reply.side}</span>` : ''}
+                            </div>
                         </div>
                     </div>
                     <div class="wedding-comment-body">

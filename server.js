@@ -55,6 +55,7 @@ io.on('connection', (socket) => {
             const comment = new Comment({
                 name: commentData.name,
                 realName: commentData.realName,
+                side: commentData.side,
                 message: commentData.message,
                 avatar: commentData.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(commentData.name)}&background=random`,
                 likes: [],
@@ -100,13 +101,14 @@ io.on('connection', (socket) => {
     });
 
     // Xử lý reply
-    socket.on('new-reply', async ({ parentId, name, message }) => {
+    socket.on('new-reply', async ({ parentId, name, message, side }) => {
         try {
             const comment = await Comment.findById(parentId);
             if (comment) {
                 const reply = {
                     _id: new mongoose.Types.ObjectId(),
                     name,
+                    side,
                     message,
                     createdAt: new Date()
                 };
@@ -141,6 +143,7 @@ app.post('/api/comments', async (req, res) => {
         const comment = new Comment({
             name: req.body.name,
             realName: req.body.realName,
+            side: req.body.side,
             message: req.body.message,
             avatar: req.body.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(req.body.name)}&background=random`
         });
