@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Expires" content="-1">
     <meta name="keywords" content="">
-    <meta name="description" content="Wedding Invitation">
+    <meta name="description" content="">
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link rel="icon" type="image/jpeg" href="/images/banner.jpg">
     <link rel="apple-touch-icon" href="/images/banner.jpg">
@@ -18,7 +18,7 @@
     <meta property="og:url" content="" />
     <meta property="og:title" content="THIỆP MỜI CƯỚI HỮU ĐỘ - MỸ DUYÊN" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Wedding Invitation" />
+    <meta property="og:description" content="" />
     <meta property="og:image" content="/images/banner.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -4544,7 +4544,35 @@
             background-image: none !important;
         }
     </style>
+    <script>
+        window.oncontextmenu = function () {
+            return false;
+        };
+        document.onkeydown = function (e) {
+            if ((e.ctrlKey || e.metaKey) && e.which == 85) {
+                e.preventDefault();
+                return false;
+            }
+        };
+        document.addEventListener("keydown", function (event) {
+            if (
+                event.key === "F12" ||
+                (event.ctrlKey && event.shiftKey && event.key === "I") ||
+                (event.ctrlKey && event.shiftKey && event.key === "J") ||
+                (event.ctrlKey && event.key === "U")
+            ) {
+                event.preventDefault();
+            }
+        });
 
+        (function () {
+            const styleTitle = 'font-size: 48px; font-weight: bold; color: red;';
+            const styleMsg = 'font-size: 16px;';
+
+            console.log('%cDừng lại!', styleTitle);
+            console.log('%cĐây là một tính năng của trình duyệt dành cho các nhà phát triển. Nếu ai đó bảo bạn sao chép-dán nội dung nào đó vào đây để bật một tính năng của LadiPage hoặc "hack" tài khoản của người khác, thì đó là hành vi lừa đảo và sẽ khiến họ có thể truy cập vào tài khoản của bạn.', styleMsg);
+        })();
+    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timoschaefer/jQuery-Sakura/jquery-sakura.css">
 </head>
 
