@@ -110,6 +110,14 @@
             <input type="text" id="guestName" placeholder="Nhập tên khách mời (VD: Anh A, Chị B)..."
                 onkeypress="handleEnter(event)">
         </div>
+        <div class="form-group">
+            <label for="guestSide">Bên Mời</label>
+            <select id="guestSide"
+                style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;">
+                <option value="Nhà Trai">Nhà Trai</option>
+                <option value="Nhà Gái">Nhà Gái</option>
+            </select>
+        </div>
         <button onclick="createInvite()">Tạo Thiệp</button>
 
         <div class="result" id="resultArea">
@@ -128,7 +136,9 @@
 
         async function createInvite() {
             const nameInput = document.getElementById('guestName');
+            const sideInput = document.getElementById('guestSide');
             const name = nameInput.value.trim();
+            const side = sideInput.value;
 
             if (!name) {
                 alert('Vui lòng nhập tên khách mời!');
@@ -141,7 +151,7 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ name })
+                    body: JSON.stringify({ name, side })
                 });
 
                 const data = await response.json();

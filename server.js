@@ -159,10 +159,10 @@ app.post('/api/comments', async (req, res) => {
 // Guest API Routes for Card Generator
 app.post('/api/guests', async (req, res) => {
     try {
-        const { name } = req.body;
+        const { name, side } = req.body;
         if (!name) return res.status(400).json({ error: 'Name is required' });
 
-        const guest = new Guest({ name });
+        const guest = new Guest({ name, side: side || 'Nhà Trai' });
         await guest.save();
         res.status(201).json(guest);
     } catch (error) {

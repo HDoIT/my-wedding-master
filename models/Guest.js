@@ -11,6 +11,11 @@ const GuestSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    side: {
+        type: String,
+        enum: ['Nhà Trai', 'Nhà Gái'],
+        default: 'Nhà Trai'
+    },
     slug: {
         type: String,
         unique: true,
