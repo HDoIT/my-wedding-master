@@ -34,6 +34,11 @@ app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
+// Ping endpoint for Render cold start prevention
+app.get('/ping', (req, res) => {
+    res.send('pong');
+});
+
 // Kết nối MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/wedding-comments')
     .then(() => console.log('✅ Connected to MongoDB'))
